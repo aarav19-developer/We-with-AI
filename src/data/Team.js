@@ -74,7 +74,7 @@ export const process = [
 
 export const teamLeads = [
   {
-    name: 'Vivek Kashyap',
+    name: 'VIVEK KASHYAP',
     role: 'Founder & CEO',
     tag: 'Founder',
     bio: 'A B.Tech CSE graduate with a deep passion for storytelling and digital growth, Vivek founded ZoTo Smart Services to bridge the gap between local businesses and powerful digital presence. An active content creator himself, he brings first-hand expertise in what genuinely moves audiences, drives engagement and builds brands that people connect with. His vision is clear: make world-class digital marketing accessible to every growing Indian business.',
@@ -83,12 +83,12 @@ export const teamLeads = [
     initials: 'VK',
   },
   {
-    name: 'Aarav Harit',
-    role: 'Chief Visionary Officer',
+    name: 'AARAV HARIT',
+    role: 'Chief Visionary Officer & Co-Founder',
     tag: 'CVO',
     bio: 'The strategic backbone of ZoTo\'s digital growth engine. Currently pursuing B.Tech in Computer Science & Engineering, Aarav combines technical depth with sharp creative insight to architect data-driven campaigns that deliver measurable, scalable impact. From brand architecture and performance advertising to web strategy and campaign analytics, Aarav ensures every client initiative is engineered for long-term growth, not short-term vanity metrics. His approach blends engineering precision with marketing creativity — a rare combination that sets ZoTo apart.',
-    highlights: ['B.Tech CSE (Pursuing)', 'Digital Strategist', 'Performance Advertising', 'Web & Brand Architecture'],
+    highlights: ['B.Tech CSE (Pursuing)', 'Digital Strategist', 'Growth Strategist', 'Web & Brand Architecture'],
     color: '#7B2FF7',
-    initials: 'AH',
+    initials: 'A22',
   },
 ];
