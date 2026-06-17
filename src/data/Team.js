@@ -83,7 +83,7 @@ export const teamLeads = [
     initials: 'VK',
   },
   {
-    name: 'AARAV HARIT',
+    name: 'AARAV-HARIT',
     role: 'Chief Visionary Officer & Co-Founder',
     tag: 'CVO',
     bio: 'The strategic backbone of ZoTo\'s digital growth engine. Currently pursuing B.Tech in Computer Science & Engineering, Aarav combines technical depth with sharp creative insight to architect data-driven campaigns that deliver measurable, scalable impact. From brand architecture and performance advertising to web strategy and campaign analytics, Aarav ensures every client initiative is engineered for long-term growth, not short-term vanity metrics. His approach blends engineering precision with marketing creativity — a rare combination that sets ZoTo apart.',
