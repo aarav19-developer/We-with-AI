@@ -125,21 +125,106 @@ export default function VideoSection() {
           )}
         </div>
 
-        {/* bottom strip — 3 value props */}
+        {/* bottom strip — 3 value props with SVG icons, no emojis */}
         <div className={`${styles.strip} reveal`}>
           {[
-            { icon: '📊', label: 'Data-Driven Strategy', desc: 'Every decision backed by real numbers, not guesswork.' },
-            { icon: '🎬', label: 'Premium Creative',      desc: 'Content built to stop the scroll and build your brand.' },
-            { icon: '📈', label: 'Measurable Growth',     desc: 'Clear reports showing exactly what moved the needle.' },
+            {
+              svg: (
+                <svg viewBox="0 0 40 40" fill="none" width="36" height="36">
+                  <rect width="40" height="40" rx="10" fill="url(#vs1)"/>
+                  <defs><linearGradient id="vs1" x1="0" y1="0" x2="40" y2="40">
+                    <stop offset="0%" stopColor="#7B2FF7"/>
+                    <stop offset="100%" stopColor="#1A8FE3"/>
+                  </linearGradient></defs>
+                  <rect x="9" y="22" width="4" height="9" rx="2" fill="white" opacity=".6"/>
+                  <rect x="16" y="16" width="4" height="15" rx="2" fill="white" opacity=".8"/>
+                  <rect x="23" y="10" width="4" height="21" rx="2" fill="white"/>
+                  <polyline points="9,20 18,14 27,8" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 2"/>
+                </svg>
+              ),
+              label: 'Data-Driven Strategy',
+              desc: 'Every decision backed by real numbers, not guesswork.',
+            },
+            {
+              svg: (
+                <svg viewBox="0 0 40 40" fill="none" width="36" height="36">
+                  <rect width="40" height="40" rx="10" fill="url(#vs2)"/>
+                  <defs><linearGradient id="vs2" x1="0" y1="0" x2="40" y2="40">
+                    <stop offset="0%" stopColor="#FF5722"/>
+                    <stop offset="100%" stopColor="#E91E8C"/>
+                  </linearGradient></defs>
+                  <rect x="8" y="11" width="24" height="18" rx="3" stroke="white" strokeWidth="2" fill="none"/>
+                  <polygon points="17,16 17,24 25,20" fill="white"/>
+                  <line x1="8" y1="33" x2="32" y2="33" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              ),
+              label: 'Premium Creative',
+              desc: 'Content built to stop the scroll and build your brand.',
+            },
+            {
+              svg: (
+                <svg viewBox="0 0 40 40" fill="none" width="36" height="36">
+                  <rect width="40" height="40" rx="10" fill="url(#vs3)"/>
+                  <defs><linearGradient id="vs3" x1="0" y1="0" x2="40" y2="40">
+                    <stop offset="0%" stopColor="#C2185B"/>
+                    <stop offset="100%" stopColor="#FF5722"/>
+                  </linearGradient></defs>
+                  <polyline points="8,28 15,20 20,24 28,14 32,10" stroke="white" strokeWidth="2.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                  <polyline points="27,10 32,10 32,15" stroke="white" strokeWidth="2.2" fill="none" strokeLinecap="round"/>
+                  <circle cx="32" cy="10" r="3" fill="white"/>
+                </svg>
+              ),
+              label: 'Measurable Growth',
+              desc: 'Clear reports showing exactly what moved the needle.',
+            },
           ].map((item) => (
             <div key={item.label} className={styles.stripItem}>
-              <span className={styles.stripIcon}>{item.icon}</span>
+              <span className={styles.stripIconWrap}>{item.svg}</span>
               <div>
                 <p className={styles.stripLabel}>{item.label}</p>
                 <p className={styles.stripDesc}>{item.desc}</p>
               </div>
             </div>
           ))}
+        </div>
+        {/* ── Bridge transition — fills gap before Services section ── */}
+        <div className={styles.bridge}>
+          {/* wave SVG */}
+          <svg className={styles.bridgeWave} viewBox="0 0 1440 60" preserveAspectRatio="none" height="60">
+            <path d="M0,30 C180,60 360,0 540,30 C720,60 900,0 1080,30 C1260,60 1380,20 1440,30 L1440,60 L0,60Z"
+              fill="url(#bwGrad)"/>
+            <defs>
+              <linearGradient id="bwGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="#A78BFA"/>
+                <stop offset="50%" stopColor="#F4622A"/>
+                <stop offset="100%" stopColor="#A78BFA"/>
+              </linearGradient>
+            </defs>
+          </svg>
+
+          {/* gradient divider */}
+          <div className={styles.divider} />
+
+          {/* floating service pills — tease what's coming */}
+          <div className={styles.pillRow}>
+            {[
+              { label: 'Social Media Management', color: '#E91E8C',  delay: '0s'    },
+              { label: 'SEO & Google Ads',        color: '#7B2FF7',  delay: '0.4s'  },
+              { label: 'Branding & Design',       color: '#FF5722',  delay: '0.8s'  },
+              { label: 'Content & Video',         color: '#1A8FE3',  delay: '1.2s'  },
+              { label: 'Performance Advertising', color: '#C2185B',  delay: '1.6s'  },
+              { label: 'Strategy & Growth',       color: '#7B2FF7',  delay: '2.0s'  },
+            ].map((p) => (
+              <span
+                key={p.label}
+                className={styles.pill}
+                style={{ animationDelay: p.delay, '--pill-c': p.color }}
+              >
+                <span className={styles.pillDot} style={{ background: p.color }} />
+                {p.label}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

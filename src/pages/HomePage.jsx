@@ -5,6 +5,7 @@ import Services     from '../components/Services';
 import Results      from '../components/Results';
 import WhyUs        from '../components/WhyUs';
 import Process      from '../components/Process';
+import StatsBand    from '../components/StatsBand';
 import Partners     from '../components/Partners';
 import Offer        from '../components/Offer';
 
@@ -18,6 +19,7 @@ export default function HomePage() {
       <Results />
       <WhyUs />
       <Process />
+      <StatsBand />
       <Partners preview />
       <Offer />
     </>

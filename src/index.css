@@ -64,7 +64,7 @@
   --font-ui:       'Inter', system-ui, sans-serif;
 
   /* ── Spacing ── */
-  --section-py:    100px;
+  --section-py:    80px;   /* reduced from 100px — prevents empty gaps */
   --container:     1200px;
 
   /* ── Shadows ── */
@@ -255,6 +255,6 @@ strong { font-weight: 600; color: var(--text-dark); }
 
 /* ─── Responsive ───────────────────────────────────────── */
 @media (max-width: 768px) {
-  :root { --section-py: 68px; --navbar-h: 70px; }
+  :root { --section-py: 56px; --navbar-h: 70px; }
   .page-hero { padding-top: calc(var(--navbar-h) + 40px); padding-bottom: 52px; }
 }
