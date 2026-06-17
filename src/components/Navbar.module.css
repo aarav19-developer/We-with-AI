@@ -5,13 +5,16 @@
   z-index: 1000;
   transition: all var(--transition);
   padding-block: 16px;
+  background: rgba(245,240,255,.92);   /* light purple always visible */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .scrolled {
-  background: rgba(253,250,246,.96);      /* warm cream */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 1px 0 var(--line-warm), 0 4px 24px rgba(0,0,0,.05);
+  background: rgba(237,233,254,.97);   /* slightly deeper lavender on scroll */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 1px 0 rgba(167,139,250,.25), 0 4px 24px rgba(124,58,237,.08);
   padding-block: 11px;
 }
 
@@ -37,24 +40,23 @@
   justify-content: center;
   width: 80px;
   height: 80px;
-  /* warm cream bg — matches the site theme so white PNG bg disappears */
-  background: #FDFAF6;
+  /* matches light purple navbar so PNG white bg blends away */
+  background: #F5F0FF;
   border-radius: 14px;
   overflow: hidden;
   transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
-  box-shadow: 0 2px 10px rgba(244,98,42,.12);
+  box-shadow: 0 2px 10px rgba(124,58,237,.12);
 }
 .logoIcon img {
   width: 90%;
   height: 90%;
   object-fit: contain;
-  /* multiply blends white pixels with the cream bg — white vanishes */
   mix-blend-mode: multiply;
 }
 .logo:hover .logoIcon {
   transform: scale(1.06) rotate(-1deg);
-  box-shadow: 0 6px 20px rgba(124,58,237,.22);
-  background: #FFF7F2;   /* shifts to warm orange-cream on hover */
+  box-shadow: 0 6px 20px rgba(124,58,237,.28);
+  background: #EDE9FE;   /* slightly deeper purple on hover */
 }
 
 .logoText {
@@ -215,14 +217,14 @@
 .drawer {
   overflow: hidden;
   max-height: 0;
-  background: var(--warm-white);
+  background: rgba(245,240,255,.98);
   border-top: 1px solid transparent;
   transition: max-height var(--transition-slow), border-color var(--transition);
 }
 .drawerOpen {
   max-height: 480px;
-  border-color: var(--line-warm);
-  box-shadow: 0 12px 36px rgba(0,0,0,.06);
+  border-color: rgba(167,139,250,.3);
+  box-shadow: 0 12px 36px rgba(124,58,237,.1);
 }
 
 .drawerLinks {
