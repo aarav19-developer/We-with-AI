@@ -364,13 +364,22 @@
   .inner {
     grid-template-columns: 1fr;
     gap: 52px;
-    padding-block: 60px;
+    padding-block: 56px;
   }
   .visual { display: none; }
-  .hero { min-height: auto; padding-block: 36px 60px; }
+  .hero { min-height: auto; padding-block: 32px 56px; }
 }
 
 @media (max-width: 480px) {
+  .inner { padding-block: 40px; gap: 36px; }
   .actions { flex-direction: column; align-items: stretch; }
   .actions > * { width: 100%; justify-content: center; }
+  .headline { font-size: clamp(28px, 8vw, 40px); }
+  .tags { gap: 5px; }
+  .tag { font-size: 10.5px; padding: 3px 10px; }
+}
+
+@media (max-width: 360px) {
+  .inner { padding-block: 28px; }
+  .content { gap: 20px; }
 }

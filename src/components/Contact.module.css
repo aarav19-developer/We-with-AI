@@ -339,4 +339,12 @@
 @media (max-width: 520px) {
   .row { grid-template-columns: 1fr; }
   .formWrap { padding: 24px 18px; }
+  .topHead { margin-bottom: 40px; }
+  .mainTitle { margin-block: 10px 12px; }
+}
+@media (max-width: 400px) {
+  .section { padding-block: 60px; }
+  .formWrap { padding: 20px 14px; }
+  .infoCard { padding: 14px 14px; gap: 11px; }
+  .infoIcon { width: 36px; height: 36px; padding: 8px; }
 }

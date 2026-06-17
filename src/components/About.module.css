@@ -520,5 +520,19 @@
 
 @media (max-width: 480px) {
   .cardInner { padding: 22px 20px 26px; }
-  .leaderHead { margin-bottom: 48px; }
+  .leaderHead { margin-bottom: 40px; }
+  .leaderSection { padding-block: 72px; }
+  /* stats wrap to 3-across with less padding on small phones */
+  .moreStats { flex-wrap: wrap; gap: 8px; }
+  .stat { padding-inline: 12px; flex: 1; min-width: 80px; }
+  .statDivider { display: none; }
+  .stat strong { font-size: 22px; }
+  /* moreStrip padding tighter */
+  .moreStrip { padding: 20px 18px; gap: 18px; }
+  .moreLeft  { gap: 12px; }
+}
+
+@media (max-width: 360px) {
+  .moreStats { justify-content: space-between; }
+  .stat { min-width: 70px; }
 }

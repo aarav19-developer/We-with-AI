@@ -149,9 +149,21 @@
 }
 
 @media (max-width: 960px) {
-  .top { grid-template-columns: 1fr 1fr; }
+  .top { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+/* Tablet: tighten further so 2 columns don't squeeze */
+@media (max-width: 768px) {
+  .top { grid-template-columns: 1fr 1fr; gap: 24px; padding-block: 52px; }
+  .tagline { max-width: 100%; }
 }
 @media (max-width: 600px) {
-  .top { grid-template-columns: 1fr; gap: 36px; padding-block: 44px; }
+  .top { grid-template-columns: 1fr; gap: 32px; padding-block: 44px; }
   .bottom { flex-direction: column; text-align: center; }
+}
+@media (max-width: 480px) {
+  .top { padding-block: 36px; }
+  .wordmark { font-size: 20px; }
+  .tagline { font-size: 13px; }
+  .socials { gap: 8px; }
+  .social { width: 36px; height: 36px; border-radius: 8px; }
 }

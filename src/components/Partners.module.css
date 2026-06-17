@@ -204,4 +204,11 @@
 .link:hover svg { transform: translateX(4px); }
 
 @media (max-width: 960px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 520px)  { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 400px) {
+  .card { padding: 22px 18px; }
+  .avatar { width: 52px; height: 52px; font-size: 17px; border-radius: 13px; }
+  .name { font-size: 19px; }
+  .filters { gap: 6px; }
+  .filter { padding: 6px 13px; font-size: 12px; }
+}

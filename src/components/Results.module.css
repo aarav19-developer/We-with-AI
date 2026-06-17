@@ -93,4 +93,14 @@
 .bar { display: none; }
 
 @media (max-width: 960px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+@media (max-width: 480px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .item { padding: 28px 14px 24px; }
+  .value { font-size: clamp(28px, 8vw, 38px); }
+  .label { font-size: 10px; letter-spacing: 0.5px; }
+}
+@media (max-width: 360px) {
+  /* single column on very narrow phones */
+  .grid { grid-template-columns: 1fr; gap: 10px; }
+  .item { padding: 22px 18px; }
+}

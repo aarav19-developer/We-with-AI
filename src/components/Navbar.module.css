@@ -260,3 +260,19 @@
   .burger { display: flex; }
   .drawer { display: block; }
 }
+
+/* Shrink logo + text on small phones */
+@media (max-width: 480px) {
+  .nav { padding-block: 10px; overflow: hidden; }
+  .logoIcon { width: 52px; height: 52px; border-radius: 10px; }
+  .logoZ  { font-size: 22px; }
+  .logoSS { font-size: 11px; }
+  .logoSub { font-size: 8px; letter-spacing: 1.4px; }
+  .logo   { gap: 8px; }
+}
+@media (max-width: 360px) {
+  .logoIcon { width: 44px; height: 44px; border-radius: 8px; }
+  .logoZ  { font-size: 19px; }
+  .logoSS { font-size: 10px; }
+  .logoSub { display: none; }
+}

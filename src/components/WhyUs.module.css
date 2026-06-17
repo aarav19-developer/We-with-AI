@@ -141,4 +141,10 @@
 @media (max-width: 580px) {
   .grid { grid-template-columns: 1fr; }
   .banner { padding: 26px 20px; }
+  .bannerContent { flex-direction: column; gap: 16px; }
+  .bannerLink { width: 100%; justify-content: center; }
+}
+@media (max-width: 400px) {
+  .banner { padding: 22px 16px; }
+  .grid { gap: 12px; }
 }
