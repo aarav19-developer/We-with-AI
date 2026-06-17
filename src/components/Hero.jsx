@@ -110,8 +110,8 @@ export default function Hero() {
               </svg>
               Book a Free Strategy Call
             </Button>
-            <Button href="/portfolio" variant="secondary" size="lg">
-              See Our Work
+            <Button href="/services" variant="secondary" size="lg">
+              See Our Services
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>

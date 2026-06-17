@@ -2,19 +2,19 @@ import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 
 const company = [
-  { to: '/about',     label: 'About Us'  },
-  { to: '/why-us',    label: 'Why Us'    },
-  { to: '/portfolio', label: 'Portfolio' },
-  { to: '/contact',   label: 'Contact'   },
+  { to: '/about',    label: 'About Us' },
+  { to: '/why-us',   label: 'Why Us'   },
+  { to: '/services', label: 'Services' },
+  { to: '/contact',  label: 'Contact'  },
 ];
 
 const serviceLinks = [
-  { label: 'Social Media Management' },
-  { label: 'Digital Advertising'     },
-  { label: 'Branding & Identity'     },
-  { label: 'Content Creation'        },
-  { label: 'Website Development'     },
-  { label: 'Campaign Strategy'       },
+  { label: 'Social Media Management'    },
+  { label: 'Search Engine Optimization' },
+  { label: 'Google & Meta Ads'          },
+  { label: 'Content Creation'           },
+  { label: 'Logo & Brand Design'        },
+  { label: 'Graphic & Print Design'     },
 ];
 
 const socials = [
@@ -72,8 +72,10 @@ export default function Footer() {
         {/* Brand — no logo SVG, just text */}
         <div className={styles.brand}>
           <div className={styles.logoRow}>
-            {/* full name wordmark, single solid orange colour */}
-            <span className={styles.wordmark}>ZoTo Smart Services</span>
+            <span className={styles.wordmark}>
+              <span className={styles.wordmarkZoto}>ZoTo</span>
+              <span className={styles.wordmarkSS}> Smart Services</span>
+            </span>
           </div>
           <p className={styles.tagline}>
             We don't just market — we build brands that last. A full-service digital marketing

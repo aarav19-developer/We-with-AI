@@ -183,9 +183,15 @@ strong { font-weight: 600; color: var(--text-dark); }
   border: 1px solid var(--purple-muted);
 }
 
-/* ─── Page hero ────────────────────────────────────────── */
+/* ─── Navbar height token — used by page-hero to avoid overlap ─── */
+:root {
+  --navbar-h: 80px; /* matches .nav padding-block:16px + logo 68px */
+}
+
+/* ─── Page hero — pad top enough to clear the fixed navbar ─── */
 .page-hero {
-  padding-block: 100px 72px;
+  padding-top: calc(var(--navbar-h) + 60px);
+  padding-bottom: 72px;
   background: linear-gradient(160deg, var(--orange-pale) 0%, var(--cream) 45%, var(--purple-pale) 100%);
   text-align: center;
   position: relative;
@@ -249,6 +255,6 @@ strong { font-weight: 600; color: var(--text-dark); }
 
 /* ─── Responsive ───────────────────────────────────────── */
 @media (max-width: 768px) {
-  :root { --section-py: 68px; }
-  .page-hero { padding-block: 80px 52px; }
+  :root { --section-py: 68px; --navbar-h: 70px; }
+  .page-hero { padding-top: calc(var(--navbar-h) + 40px); padding-bottom: 52px; }
 }

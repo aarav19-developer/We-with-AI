@@ -5,12 +5,11 @@ import Button from '../ui/Button';
 import styles from './Navbar.module.css';
 
 const links = [
-  { to: '/',          label: 'Home'      },
-  { to: '/about',     label: 'About Us'  },
-  { to: '/services',  label: 'Services'  },
-  { to: '/why-us',    label: 'Why Us'    },
-  { to: '/portfolio', label: 'Portfolio' },
-  { to: '/contact',   label: 'Contact'   },
+  { to: '/',         label: 'Home'     },
+  { to: '/about',    label: 'About Us' },
+  { to: '/services', label: 'Services' },
+  { to: '/why-us',   label: 'Why Us'   },
+  { to: '/contact',  label: 'Contact'  },
 ];
 
 /* Actual logo from /public/Z.png */

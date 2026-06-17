@@ -24,6 +24,11 @@
   gap: 24px;
 }
 
+/* push burger to the far right on mobile */
+.inner .burger {
+  margin-left: auto;
+}
+
 /* ── Logo ── */
 .logo {
   display: flex;

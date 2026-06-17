@@ -175,20 +175,25 @@ export default function About({ compact = false }) {
                     {/* bio */}
                     <p className={styles.memberBio}>{member.bio}</p>
 
-                    {/* highlight chips */}
-                    <div className={styles.highlights}>
-                      {member.highlights.map((h) => (
-                        <span
-                          key={h}
-                          className={styles.chip}
-                          style={{ color: member.color, background: `${member.color}0E`, borderColor: `${member.color}28` }}
-                        >
-                          <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
-                            <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="2"
-                              strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                          {h}
-                        </span>
+                    {/* animated skill bars instead of chips */}
+                    <div className={styles.skillBars}>
+                      {member.skills.map((s, si) => (
+                        <div key={s.label} className={styles.skillRow}>
+                          <div className={styles.skillMeta}>
+                            <span className={styles.skillLabel}>{s.label}</span>
+                            <span className={styles.skillPct} style={{ color: member.color }}>{s.pct}%</span>
+                          </div>
+                          <div className={styles.skillTrack}>
+                            <div
+                              className={styles.skillFill}
+                              style={{
+                                width: `${s.pct}%`,
+                                background: `linear-gradient(90deg, ${member.color}, ${member.color}88)`,
+                                animationDelay: `${0.3 + si * 0.15}s`,
+                              }}
+                            />
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </div>

@@ -536,3 +536,41 @@
   .moreStats { justify-content: space-between; }
   .stat { min-width: 70px; }
 }
+
+/* ── Animated skill bars (replaces highlight chips) ── */
+.skillBars {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.skillMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.skillLabel {
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink-light);
+}
+.skillPct {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+}
+.skillTrack {
+  height: 6px;
+  background: var(--line-warm);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.skillFill {
+  height: 100%;
+  border-radius: 99px;
+  animation: fillBar 1.2s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes fillBar {
+  from { width: 0 !important; }
+}

@@ -1,103 +1,134 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import SectionHead from '../ui/SectionHead';
-import { partners, industries } from '../data/Team';
 import styles from './Partners.module.css';
 
-/* Industry icon SVGs */
-const industryIcons = {
-  'Automotive & EV': `<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12l1.5-4h11l1.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="1" y="12" width="18" height="5" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="5" cy="17" r="1.5" fill="currentColor"/><circle cx="15" cy="17" r="1.5" fill="currentColor"/><path d="M10 8v2M7 5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-  'Sports': `<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M10 2c0 0 2 3 2 8s-2 8-2 8" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M2 10h16" stroke="currentColor" stroke-width="1.2"/></svg>`,
-  'Food & Grocery': `<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 2v4c0 2 1 3 4 3s4-1 4-3V2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 9v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 18h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
-};
+/* Anonymous client cards — no names, no logos, just industry + what we did */
+const clients = [
+  {
+    id: 'ev',
+    industry: 'Automotive & EV',
+    tag: 'EV Manufacturing',
+    what: 'Full digital brand launch for an electric vehicle manufacturer — social presence, content strategy, ad campaigns and dealership awareness across North India.',
+    result: '3× engagement growth in 90 days',
+    color: '#1A8FE3',
+    iconSvg: `<svg viewBox="0 0 28 28" fill="none"><path d="M4 17l2-5h16l2 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><rect x="2" y="17" width="24" height="6" rx="2.5" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="7" cy="23" r="2" fill="currentColor"/><circle cx="21" cy="23" r="2" fill="currentColor"/><path d="M14 12v2M11 9h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  },
+  {
+    id: 'sports1',
+    industry: 'Sports Equipment',
+    tag: 'Sports Brand',
+    what: 'Rebranding, content creation and Instagram growth strategy for a premium sports equipment manufacturer — reels, ad shoots and influencer collaborations.',
+    result: '12K+ new followers in 60 days',
+    color: '#FF5722',
+    iconSvg: `<svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M14 4s2.5 4 2.5 10S14 24 14 24" stroke="currentColor" stroke-width="1.3" fill="none"/><path d="M4 14h20" stroke="currentColor" stroke-width="1.3"/></svg>`,
+  },
+  {
+    id: 'food',
+    industry: 'Food & Grocery',
+    tag: 'Food Brand',
+    what: 'Social media management, product photography and festive campaign execution for a well-known regional food and grocery brand across digital platforms.',
+    result: '40% rise in online enquiries',
+    color: '#C2185B',
+    iconSvg: `<svg viewBox="0 0 28 28" fill="none"><path d="M8 4v5c0 2.5 1.5 4 6 4s6-1.5 6-4V4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M14 13v11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M10 24h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`,
+  },
+  {
+    id: 'sports2',
+    industry: 'Sports Equipment',
+    tag: 'Iconic Sports Brand',
+    what: 'Performance advertising, Meta & Google ad management and seasonal campaign strategy for one of India\'s most recognisable sports equipment brands.',
+    result: '2.8× ROAS on paid campaigns',
+    color: '#7B2FF7',
+    iconSvg: `<svg viewBox="0 0 28 28" fill="none"><polyline points="4,20 10,13 15,17 24,8" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><polyline points="19,8 24,8 24,13" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>`,
+  },
+];
+
+const filters = ['All', 'Automotive & EV', 'Sports Equipment', 'Food & Grocery'];
 
 export default function Partners({ preview = false }) {
-  const [active, setActive] = useState('All Industries');
+  const [active, setActive] = useState('All');
   const ref = useScrollReveal();
 
-  const filtered =
-    active === 'All Industries'
-      ? partners
-      : partners.filter((p) => p.industry === active);
+  const shown = preview
+    ? clients
+    : active === 'All'
+    ? clients
+    : clients.filter((c) => c.industry === active);
 
   return (
     <section className="section section--gradient" ref={ref}>
       <div className="container">
         <SectionHead
           badge="Our Clients"
-          title="Brands That Trust Us"
-          subtitle="We've helped companies across multiple industries build their digital presence and drive real growth."
+          title="Brands We've Grown"
+          subtitle="We protect our clients' identity — here's the work we've done across industries, without the names."
         />
 
         {!preview && (
           <div className={`${styles.filters} reveal`}>
-            {industries.map((ind) => (
+            {filters.map((f) => (
               <button
-                key={ind}
-                className={`${styles.filter} ${active === ind ? styles.filterActive : ''}`}
-                onClick={() => setActive(ind)}
+                key={f}
+                className={`${styles.filter} ${active === f ? styles.filterActive : ''}`}
+                onClick={() => setActive(f)}
               >
-                {ind}
+                {f}
               </button>
             ))}
           </div>
         )}
 
         <div className={styles.grid}>
-          {filtered.map((p, i) => (
+          {shown.map((c, i) => (
             <div
-              key={p.name}
+              key={c.id}
               className={`${styles.card} reveal`}
-              style={{
-                transitionDelay: `${i * 90}ms`,
-                '--client-color': p.color,
-              }}
+              style={{ transitionDelay: `${i * 90}ms`, '--cc': c.color }}
             >
               <div className={styles.glow} />
+              <div className={styles.cardBar} style={{ background: c.color }} />
+
               <div className={styles.cardTop}>
-                <div className={styles.avatar} style={{ background: `linear-gradient(135deg, ${p.color}, ${p.color}88)` }}>
-                  {p.name.slice(0, 2).toUpperCase()}
-                </div>
-                <span
-                  className={styles.industryIcon}
-                  style={{ color: p.color, background: `${p.color}12` }}
-                  dangerouslySetInnerHTML={{ __html: industryIcons[p.industry] || '' }}
+                {/* industry icon — no brand logo */}
+                <div
+                  className={styles.iconBox}
+                  style={{ color: c.color, background: `${c.color}14`, border: `1px solid ${c.color}28` }}
+                  dangerouslySetInnerHTML={{ __html: c.iconSvg }}
                 />
+                <span
+                  className={styles.tag}
+                  style={{ color: c.color, background: `${c.color}10`, borderColor: `${c.color}28` }}
+                >
+                  {c.tag}
+                </span>
               </div>
-              <h3 className={styles.name}>{p.name}</h3>
-              <p className={styles.sub}>{p.sub}</p>
-              {!preview && p.desc && (
-                <p className={styles.desc}>{p.desc}</p>
-              )}
-              <span className={styles.tag} style={{ color: p.color, background: `${p.color}12`, borderColor: `${p.color}28` }}>
-                {p.industry}
-              </span>
+
+              <p className={styles.industry}>{c.industry}</p>
+              <p className={styles.what}>{c.what}</p>
+
+              <div className={styles.result} style={{ borderColor: `${c.color}25`, background: `${c.color}08` }}>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                  stroke={c.color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="3,17 9,11 13,15 21,7"/>
+                  <polyline points="16,7 21,7 21,12"/>
+                </svg>
+                <span style={{ color: c.color }}>{c.result}</span>
+              </div>
             </div>
           ))}
 
+          {/* "And Many More" card */}
           <div className={`${styles.card} ${styles.more} reveal`}>
             <div className={styles.morePlus}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <line x1="12" y1="5" x2="12" y2="19" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
                 <line x1="5" y1="12" x2="19" y2="12" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
               </svg>
             </div>
             <p className={styles.moreText}>And Many More</p>
-            <span className={styles.moreSub}>Across every industry we serve</span>
+            <p className={styles.moreSub}>Across retail, real estate, textiles &amp; services</p>
           </div>
         </div>
-
-        {preview && (
-          <div className={styles.cta}>
-            <Link to="/portfolio" className={styles.link}>
-              View Full Portfolio
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </Link>
-          </div>
-        )}
       </div>
     </section>
   );

@@ -34,8 +34,8 @@ export default function ServicesPage() {
         title="Not Sure Which Service You Need?"
         body="Tell us about your brand and goals on a free strategy call — we'll recommend exactly what will move the needle."
         cta1="Book a Free Strategy Call"
-        cta2="Explore Our Work"
-        cta2Href="/portfolio"
+        cta2="Explore Our Services"
+        cta2Href="/services"
       />
     </>
   );
