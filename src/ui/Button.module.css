@@ -1,0 +1,89 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  transition: all 0.25s cubic-bezier(.4,0,.2,1);
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+}
+
+/* shimmer layer */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+  transition: left 0.4s ease;
+  pointer-events: none;
+}
+.btn:hover::before { left: 140%; }
+
+/* Sizes */
+.sm  { font-size: 13px; padding: 8px 20px; }
+.md  { font-size: 14px; padding: 11px 26px; }
+.lg  { font-size: 14.5px; padding: 13px 34px; }
+
+/* ── Primary: orange → purple-light on hover ── */
+.primary {
+  background: var(--orange);
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(244,98,42,.30);
+  border: 2px solid transparent;
+}
+.primary:hover {
+  background: var(--purple-light);      /* light purple hover */
+  box-shadow: 0 8px 28px rgba(167,139,250,.40);
+  transform: translateY(-2px);
+  color: #fff;
+}
+.primary:active { transform: translateY(0); box-shadow: none; }
+
+/* ── Secondary: outlined, dark text → purple hover ── */
+.secondary {
+  background: transparent;
+  color: var(--ink-light);
+  border: 1.5px solid var(--line);
+}
+.secondary:hover {
+  background: var(--purple-pale);
+  border-color: var(--purple-light);
+  color: var(--purple);
+  transform: translateY(-2px);
+}
+
+/* ── Ghost: purple-tinted ── */
+.ghost {
+  background: transparent;
+  color: var(--purple);
+  border: 1.5px solid var(--purple-muted);
+}
+.ghost:hover {
+  background: var(--purple-pale);
+  border-color: var(--purple-light);
+  transform: translateY(-2px);
+}
+
+/* ── Outline: used on dark (Offer/black) sections ── */
+/* white border + white text → light-purple hover */
+.outline {
+  background: transparent;
+  color: rgba(255,255,255,.85);
+  border: 1.5px solid rgba(255,255,255,.28);
+}
+.outline:hover {
+  background: var(--purple-light);
+  border-color: var(--purple-light);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(167,139,250,.35);
+}

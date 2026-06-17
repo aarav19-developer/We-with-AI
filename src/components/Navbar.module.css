@@ -1,0 +1,260 @@
+.nav {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 1000;
+  transition: all var(--transition);
+  padding-block: 16px;
+}
+
+.scrolled {
+  background: rgba(253,250,246,.96);      /* warm cream */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 var(--line-warm), 0 4px 24px rgba(0,0,0,.05);
+  padding-block: 11px;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* ── Logo ── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.logoIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  /* warm cream bg — matches the site theme so white PNG bg disappears */
+  background: #FDFAF6;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+  box-shadow: 0 2px 10px rgba(244,98,42,.12);
+}
+.logoIcon img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  /* multiply blends white pixels with the cream bg — white vanishes */
+  mix-blend-mode: multiply;
+}
+.logo:hover .logoIcon {
+  transform: scale(1.06) rotate(-1deg);
+  box-shadow: 0 6px 20px rgba(124,58,237,.22);
+  background: #FFF7F2;   /* shifts to warm orange-cream on hover */
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1;
+}
+
+/* The full name line */
+.logoName {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+  white-space: nowrap;
+}
+
+/* "ZoTo" — large, bold, orange */
+.logoZ {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--orange);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  transition: color 0.25s ease;
+}
+.logo:hover .logoZ { color: var(--purple); }
+
+/* "Smart Services" — smaller, dark, upright — visually distinct */
+.logoSS {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  line-height: 1;
+  padding-left: 5px;
+  /* sits on baseline of ZoTo */
+  position: relative;
+  top: -1px;
+}
+
+/* tagline below */
+.logoSub {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  opacity: 0.75;
+}
+
+/* ── Desktop nav ── */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.link {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-light);
+  padding: 6px 13px;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), background var(--transition);
+  position: relative;
+}
+
+.linkUnderline {
+  position: absolute;
+  bottom: 1px;
+  left: 13px;
+  right: 13px;
+  height: 2px;
+  background: var(--purple-light);
+  border-radius: 99px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
+.link:hover {
+  color: var(--purple);
+  background: var(--purple-pale);
+}
+.link:hover .linkUnderline { transform: scaleX(1); }
+
+.link.active {
+  color: var(--purple);
+  background: var(--purple-pale);
+}
+.link.active .linkUnderline { transform: scaleX(1); }
+
+/* ── CTA ── */
+.cta { flex-shrink: 0; }
+
+/* Dedicated nav CTA button — always black bg, light-purple on hover.
+   No Button component variant so no override fights at any screen size. */
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  background: var(--ink);          /* black */
+  color: #fff;
+  border: 1.5px solid var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: background 0.25s ease, border-color 0.25s ease,
+              color 0.25s ease, transform 0.25s ease,
+              box-shadow 0.25s ease;
+  white-space: nowrap;
+}
+.ctaBtn:hover {
+  background: var(--purple-light);   /* light purple */
+  border-color: var(--purple-light);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(167,139,250,.35);
+}
+
+/* ── Hamburger ── */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+  flex-shrink: 0;
+}
+.burger:hover { background: var(--purple-pale); }
+.burger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 99px;
+  transition: transform var(--transition), opacity var(--transition-fast);
+  transform-origin: center;
+}
+.burgerOpen span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--purple); }
+.burgerOpen span:nth-child(2) { opacity: 0; }
+.burgerOpen span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--purple); }
+
+/* ── Mobile drawer ── */
+.drawer {
+  overflow: hidden;
+  max-height: 0;
+  background: var(--warm-white);
+  border-top: 1px solid transparent;
+  transition: max-height var(--transition-slow), border-color var(--transition);
+}
+.drawerOpen {
+  max-height: 480px;
+  border-color: var(--line-warm);
+  box-shadow: 0 12px 36px rgba(0,0,0,.06);
+}
+
+.drawerLinks {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 20px 6px;
+  gap: 2px;
+}
+
+.drawerLink {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink-light);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  transition: background var(--transition), color var(--transition);
+}
+.drawerLink:hover { background: var(--purple-pale); color: var(--purple); }
+.drawerLink.active { background: var(--purple-pale); color: var(--purple); font-weight: 600; }
+
+.drawerCta {
+  padding: 10px 20px 20px;
+}
+/* Same style for mobile drawer CTA */
+.drawerCta .ctaBtn {
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 960px) {
+  .links, .cta { display: none; }
+  .burger { display: flex; }
+  .drawer { display: block; }
+}

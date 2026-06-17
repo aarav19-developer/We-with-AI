@@ -1,0 +1,157 @@
+/* Footer — true black with orange + purple reflections */
+.footer {
+  background: #0f0c0a;
+  color: rgba(255,255,255,.5);
+  margin-top: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Orange glow — bottom-left */
+.glowOrange {
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(244,98,42,.16), transparent 65%);
+  pointer-events: none;
+}
+
+/* Purple glow — top-right */
+.glowPurple {
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 420px; height: 420px;
+  background: radial-gradient(circle, rgba(167,139,250,.12), transparent 65%);
+  pointer-events: none;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.4fr;
+  gap: 52px;
+  padding-block: 72px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  position: relative;
+  z-index: 1;
+}
+
+/* Brand */
+.brand {}
+
+.logoRow {
+  margin-bottom: 18px;
+}
+
+/* Single-colour orange wordmark — full name, no gradient, no logo image */
+.wordmark {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2vw, 26px);  /* responsive so full name fits */
+  font-weight: 400;
+  color: var(--orange);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  display: inline-block;
+  transition: color var(--transition);
+}
+.wordmark:hover { color: var(--orange-soft); }
+
+.tagline {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  line-height: 1.78;
+  color: rgba(255,255,255,.42);
+  max-width: 280px;
+  margin-bottom: 22px;
+}
+
+.socials { display: flex; gap: 10px; }
+.social {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.09);
+  display: grid;
+  place-items: center;
+  transition: all var(--transition);
+}
+.social:hover {
+  background: rgba(255,255,255,.12);
+  border-color: var(--social-hover, rgba(255,255,255,.22));
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.3);
+}
+
+/* Columns */
+.colHead {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.7);
+  margin-bottom: 18px;
+}
+.col ul { display: flex; flex-direction: column; gap: 11px; }
+.colLink {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: rgba(255,255,255,.45);
+  transition: color var(--transition);
+  display: inline-block;
+  position: relative;
+}
+/* underline slide-in on hover */
+.colLink::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 1px;
+  background: var(--purple-light);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+.colLink:hover {
+  color: var(--purple-light);
+}
+.colLink:hover::after { transform: scaleX(1); }
+
+.contactList { gap: 13px !important; }
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: rgba(255,255,255,.45);
+}
+
+/* Bottom bar */
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 22px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+.copy  { color: rgba(255,255,255,.28); }
+.motto {
+  font-style: italic;
+  color: var(--orange);
+  font-size: 12.5px;
+  opacity: 0.7;
+}
+
+@media (max-width: 960px) {
+  .top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .top { grid-template-columns: 1fr; gap: 36px; padding-block: 44px; }
+  .bottom { flex-direction: column; text-align: center; }
+}
