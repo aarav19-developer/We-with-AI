@@ -67,7 +67,7 @@ export default function Navbar() {
 
         {/* CTA */}
         <div className={styles.cta}>
-          <a href="/contact" className={styles.ctaBtn}>Book a Free Call</a>
+          <Link to="/contact" className={styles.ctaBtn}>Book a Free Call</Link>
         </div>
 
         {/* Hamburger */}
@@ -98,9 +98,13 @@ export default function Navbar() {
           ))}
         </nav>
         <div className={styles.drawerCta}>
-          <a href="/contact" className={styles.ctaBtn} onClick={() => setOpen(false)}>
+          <Link
+            to="/contact"
+            className={styles.ctaBtn}
+            onClick={() => setOpen(false)}
+          >
             Book a Free Call
-          </a>
+          </Link>
         </div>
       </div>
     </header>

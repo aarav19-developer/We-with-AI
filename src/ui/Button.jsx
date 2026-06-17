@@ -1,8 +1,12 @@
+import { Link } from 'react-router-dom';
 import styles from './Button.module.css';
 
 /**
- * variant: 'primary' | 'secondary' | 'ghost'
+ * variant: 'primary' | 'secondary' | 'ghost' | 'outline'
  * size:    'sm' | 'md' | 'lg'
+ *
+ * When href is supplied, renders a React Router <Link> for internal routes
+ * (starts with /) or a plain <a> for external URLs (http/mailto/tel).
  */
 export default function Button({
   children,
@@ -19,10 +23,31 @@ export default function Button({
     .join(' ');
 
   if (href) {
+    const isExternal =
+      href.startsWith('http') ||
+      href.startsWith('mailto') ||
+      href.startsWith('tel');
+
+    if (isExternal) {
+      return (
+        <a
+          href={href}
+          className={cls}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={onClick}
+          {...rest}
+        >
+          {children}
+        </a>
+      );
+    }
+
+    /* Internal route — use React Router Link (no page reload) */
     return (
-      <a href={href} className={cls} {...rest}>
+      <Link to={href} className={cls} onClick={onClick} {...rest}>
         {children}
-      </a>
+      </Link>
     );
   }
 
