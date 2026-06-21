@@ -5,10 +5,9 @@ import Button from '../ui/Button';
 import styles from './Contact.module.css';
 
 // ── EmailJS config ─────────────────────────────────────────────────────────
-// Replace these three values with your actual IDs from emailjs.com dashboard
-const EMAILJS_SERVICE_ID  = 'service_9vac6zf';   // e.g. 'service_abc123'
-const EMAILJS_TEMPLATE_ID = 'template_23qosxo';  // e.g. 'template_xyz456'
-const EMAILJS_PUBLIC_KEY  = 'L5HtprM45V5o6ST29';   // e.g. 'aBcDeFgHiJkLmNoP'
+const EMAILJS_SERVICE_ID  = 'service_9vac6zf';  
+const EMAILJS_TEMPLATE_ID = 'template_23qosxo';  
+const EMAILJS_PUBLIC_KEY  = 'L5HtprM45V5o6ST29';   
 // ──────────────────────────────────────────────────────────────────────────
 
 const contactInfo = [
