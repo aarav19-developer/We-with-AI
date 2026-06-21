@@ -1,7 +1,15 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import Button from '../ui/Button';
 import styles from './Contact.module.css';
+
+// ── EmailJS config ─────────────────────────────────────────────────────────
+// Replace these three values with your actual IDs from emailjs.com dashboard
+const EMAILJS_SERVICE_ID  = 'service_9vac6zf';   // e.g. 'service_abc123'
+const EMAILJS_TEMPLATE_ID = 'template_23qosxo';  // e.g. 'template_xyz456'
+const EMAILJS_PUBLIC_KEY  = 'L5HtprM45V5o6ST29';   // e.g. 'aBcDeFgHiJkLmNoP'
+// ──────────────────────────────────────────────────────────────────────────
 
 const contactInfo = [
   {
@@ -46,13 +54,35 @@ function PurplePin() {
 
 export default function Contact() {
   const ref = useScrollReveal();
+  const formRef = useRef(null);
   const [form, setForm] = useState({
     name: '', phone: '', email: '', goal: 'Not Sure Yet — Need Guidance', message: '',
   });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  const onSubmit = (e) => { e.preventDefault(); setSent(true); };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      );
+      setSent(true);
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setError('Something went wrong. Please try again or reach us directly via phone/WhatsApp.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className={styles.section} ref={ref}>
@@ -167,7 +197,7 @@ export default function Contact() {
                 <p>Thanks for reaching out. Our team will contact you within 24 hours to schedule your free strategy call.</p>
               </div>
             ) : (
-              <form className={styles.form} onSubmit={onSubmit}>
+              <form ref={formRef} className={styles.form} onSubmit={onSubmit}>
                 <div className={styles.row}>
                   <div className={styles.field}>
                     <label htmlFor="name">Full Name</label>
@@ -194,11 +224,23 @@ export default function Contact() {
                     placeholder="What does your business do? What are your goals?"
                     value={form.message} onChange={onChange}/>
                 </div>
-                <Button type="submit" size="lg">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.7 10.15a19.79 19.79 0 01-3.07-8.67A2 2 0 012.63 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.57a16 16 0 006 6l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/>
-                  </svg>
-                  Book My Free Strategy Call
+                {error && <p className={styles.errorMsg}>{error}</p>}
+                <Button type="submit" size="lg" disabled={loading}>
+                  {loading ? (
+                    <>
+                      <svg className={styles.spinner} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                      </svg>
+                      Sending…
+                    </>
+                  ) : (
+                    <>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.7 10.15a19.79 19.79 0 01-3.07-8.67A2 2 0 012.63 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.57a16 16 0 006 6l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/>
+                      </svg>
+                      Book My Free Strategy Call
+                    </>
+                  )}
                 </Button>
               </form>
             )}
