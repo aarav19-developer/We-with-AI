@@ -227,13 +227,13 @@ export default function About({ compact = false }) {
                 <div>
                   <p className={styles.moreTitle}>Our Growing Team</p>
                   <p className={styles.moreSub}>
-                    Kanhaiya · Vishal · Manish · Kartik and many more creative minds behind the work.
+                     Kartik Agarwal · Vishal · Manish and many more creative minds behind the work.
                   </p>
                 </div>
               </div>
               <div className={styles.moreStats}>
                 <div className={styles.stat}>
-                  <strong>10+</strong>
+                  <strong>8+</strong>
                   <span>Team Members</span>
                 </div>
                 <div className={styles.statDivider} />

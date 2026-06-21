@@ -43,7 +43,7 @@ export const teamLeads = [
     skills: [
       { label: 'Brand Strategy',   pct: 95 },
       { label: 'Content Creation', pct: 90 },
-      { label: 'Business Growth',  pct: 88 },
+      { label: 'Business Growth',  pct: 89 },
       { label: 'Team Leadership',  pct: 92 },
     ],
     color: '#FF5722',
@@ -57,8 +57,8 @@ export const teamLeads = [
     skills: [
       { label: 'Digital Strategy',    pct: 96 },
       { label: 'Performance Ads',     pct: 93 },
-      { label: 'Campaign Analytics',  pct: 90 },
-      { label: 'Web & Brand Systems', pct: 87 },
+      { label: 'Campaign Analytics',  pct: 93 },
+      { label: 'Web & Brand Systems', pct: 88 },
     ],
     color: '#7B2FF7',
     initials: 'AH',
