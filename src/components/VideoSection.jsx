@@ -1,9 +1,7 @@
-import { useState, useRef } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import styles from './VideoSection.module.css';
 
 export default function VideoSection() {
-  const [playing, setPlaying] = useState(false);
   const ref = useScrollReveal();
 
   return (
@@ -30,33 +28,31 @@ export default function VideoSection() {
           <div className={styles.ring1} aria-hidden="true" />
           <div className={styles.ring2} aria-hidden="true" />
 
-          {!playing ? (
-            /* ── Thumbnail placeholder ── */
+          {/* ── Thumbnail with Coming Soon overlay ── */}
             <div className={styles.thumb}>
-              {/* animated waveform behind the play button */}
+              {/* animated waveform behind the text */}
               <div className={styles.waveWrap} aria-hidden="true">
                 {[1,2,3,4,5,6,7,8,9,10,11,12].map((n) => (
                   <div key={n} className={styles.wave} style={{ animationDelay: `${n * 0.1}s` }} />
                 ))}
               </div>
 
-              {/* play button */}
-              <button
-                className={styles.playBtn}
-                onClick={() => setPlaying(true)}
-                aria-label="Play video"
-              >
-                <span className={styles.playRipple} />
-                <span className={styles.playRipple2} />
-                <svg viewBox="0 0 24 24" fill="white" width="28" height="28">
-                  <polygon points="6,3 20,12 6,21"/>
-                </svg>
-              </button>
+              {/* Coming Soon content */}
+              <div className={styles.comingSoon}>
+                <div className={styles.csIconWrap} aria-hidden="true">
+                  <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                  </svg>
+                </div>
+                <p className={styles.csLabel}>Coming Soon</p>
+                <p className={styles.csSub}>Our brand story video is in production.<br/>Check back shortly.</p>
+              </div>
 
               {/* label */}
               <div className={styles.thumbLabel}>
                 <span className={styles.liveDot} />
-                Click to watch our story
+                In production — stay tuned
               </div>
 
               {/* floating stat chips */}
@@ -79,7 +75,7 @@ export default function VideoSection() {
                 95% Retention
               </div>
 
-              {/* animated SVG graph inside the placeholder */}
+              {/* animated SVG graph */}
               <svg className={styles.graphSvg} viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
                 <defs>
                   <linearGradient id="gfill" x1="0" y1="0" x2="0" y2="1">
@@ -99,7 +95,6 @@ export default function VideoSection() {
                   d="M0,100 C50,90 80,70 120,55 C160,40 180,60 220,42 C260,25 290,30 330,15 C360,5 380,8 400,4 L400,120 L0,120 Z"
                   fill="url(#gfill)"
                 />
-                {/* orange growth curve */}
                 <path
                   d="M0,110 C60,108 100,95 150,80 C200,65 230,72 270,55 C310,38 350,20 400,10"
                   fill="none"
@@ -111,18 +106,6 @@ export default function VideoSection() {
                 />
               </svg>
             </div>
-          ) : (
-            /* ── Video embed placeholder — swap src for real video ── */
-            <div className={styles.videoWrap}>
-              <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-                title="ZoTo Smart Services — Our Story"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className={styles.iframe}
-              />
-            </div>
-          )}
         </div>
 
         {/* bottom strip — 3 value props with SVG icons, no emojis */}
