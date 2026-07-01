@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zotosmartservices.com/sitemap.xml
