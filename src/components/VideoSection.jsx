@@ -188,25 +188,40 @@ export default function VideoSection() {
           {/* gradient divider */}
           <div className={styles.divider} />
 
-          {/* floating service pills — tease what's coming */}
-          <div className={styles.pillRow}>
-            {[
-              { label: 'Social Media Management', color: '#E91E8C',  delay: '0s'    },
-              { label: 'SEO & Google Ads',        color: '#7B2FF7',  delay: '0.4s'  },
-              { label: 'Branding & Design',       color: '#FF5722',  delay: '0.8s'  },
-              { label: 'Content & Video',         color: '#1A8FE3',  delay: '1.2s'  },
-              { label: 'Performance Advertising', color: '#C2185B',  delay: '1.6s'  },
-              { label: 'Strategy & Growth',       color: '#7B2FF7',  delay: '2.0s'  },
-            ].map((p) => (
-              <span
-                key={p.label}
-                className={styles.pill}
-                style={{ animationDelay: p.delay, '--pill-c': p.color }}
-              >
-                <span className={styles.pillDot} style={{ background: p.color }} />
-                {p.label}
-              </span>
-            ))}
+          {/* floating service pills — 2 rows of 3 for consistent pattern */}
+          <div className={styles.pillGrid}>
+            <div className={styles.pillRow}>
+              {[
+                { label: 'Social Media Management', color: '#E91E8C', delay: '0s'   },
+                { label: 'SEO & Google Ads',        color: '#7B2FF7', delay: '0.4s' },
+                { label: 'Branding & Design',       color: '#FF5722', delay: '0.8s' },
+              ].map((p) => (
+                <span
+                  key={p.label}
+                  className={styles.pill}
+                  style={{ animationDelay: p.delay, '--pill-c': p.color }}
+                >
+                  <span className={styles.pillDot} style={{ background: p.color }} />
+                  {p.label}
+                </span>
+              ))}
+            </div>
+            <div className={styles.pillRow}>
+              {[
+                { label: 'Content & Video',         color: '#1A8FE3', delay: '1.2s' },
+                { label: 'Performance Advertising', color: '#C2185B', delay: '1.6s' },
+                { label: 'Strategy & Growth',       color: '#7B2FF7', delay: '2.0s' },
+              ].map((p) => (
+                <span
+                  key={p.label}
+                  className={styles.pill}
+                  style={{ animationDelay: p.delay, '--pill-c': p.color }}
+                >
+                  <span className={styles.pillDot} style={{ background: p.color }} />
+                  {p.label}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

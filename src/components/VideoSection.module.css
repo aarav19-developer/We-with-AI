@@ -52,6 +52,10 @@
   line-height: 1.78;
 }
 
+@media (max-width: 600px) {
+  .head { margin-bottom: 32px; }
+}
+
 /* ── Frame ── */
 .frame {
   position: relative;
@@ -77,6 +81,10 @@
   pointer-events: none;
 }
 @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+@media (max-width: 600px) {
+  .ring1, .ring2 { display: none; }
+}
 
 /* ── Thumbnail ── */
 .thumb {
@@ -352,13 +360,26 @@
 
 @media (max-width: 768px) {
   .strip { grid-template-columns: 1fr; max-width: 480px; }
-  .chip1, .chip2 { font-size: 10.5px; padding: 5px 10px; }
+  .chip { font-size: 10px; padding: 5px 10px; gap: 5px; }
+  .chip1 { top: 10px; left: 10px; }
+  .chip2 { top: 10px; right: 10px; }
   .chip3 { display: none; }
   .playBtn { width: 62px; height: 62px; }
+  .csLabel { font-size: clamp(22px, 6vw, 30px); }
+  .csSub { font-size: 12px; }
+  .csIconWrap { width: 54px; height: 54px; }
+  .comingSoon { padding: 0 12px; padding-top: 36px; }
+  .thumbLabel { font-size: 10.5px; bottom: 12px; }
 }
 @media (max-width: 480px) {
-  .chip1, .chip2 { display: none; }
-  .frame { margin-bottom: 36px; }
+  .chip1, .chip2, .chip3 { display: none; }
+  .frame { margin-bottom: 28px; }
+  .comingSoon { padding: 0 16px; padding-top: 20px; }
+  .csLabel { font-size: clamp(20px, 7vw, 28px); }
+  .csSub { font-size: 11.5px; max-width: 240px; }
+  .csIconWrap { width: 48px; height: 48px; }
+  .waveWrap { height: 36px; }
+  .thumbLabel { bottom: 10px; }
 }
 
 /* ── Transition bridge — fills the gap before Services ── */
@@ -377,15 +398,23 @@
   opacity: 0.18;
 }
 
+/* floating pill grid — always 2 rows of 3 */
+.pillGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  padding: 28px 16px 36px;
+  position: relative;
+  z-index: 1;
+}
+
 /* floating pill row */
 .pillRow {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 10px;
   justify-content: center;
-  padding: 28px 0 36px;
-  position: relative;
-  z-index: 1;
 }
 .pill {
   display: inline-flex;
@@ -402,6 +431,7 @@
   transition: all 0.22s ease;
   animation: pillFloat 4s ease-in-out infinite;
   color: var(--ink-light);
+  white-space: nowrap;
 }
 .pill:hover {
   border-color: var(--purple-light);
@@ -417,6 +447,26 @@
 @keyframes pillFloat {
   0%,100% { transform: translateY(0); }
   50%      { transform: translateY(-5px); }
+}
+
+@media (max-width: 600px) {
+  .pillGrid {
+    gap: 8px;
+    padding: 20px 12px 28px;
+  }
+  .pill {
+    font-size: 11px;
+    padding: 6px 12px;
+    gap: 5px;
+  }
+  .pillDot { width: 5px; height: 5px; }
+}
+@media (max-width: 400px) {
+  .pillRow { flex-wrap: wrap; }
+  .pill {
+    font-size: 10.5px;
+    padding: 6px 11px;
+  }
 }
 
 /* divider line */

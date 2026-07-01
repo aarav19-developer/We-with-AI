@@ -66,7 +66,7 @@
   line-height: 1.72;
 }
 
-/* Banner */
+/* Banner / Trust Strip */
 .banner {
   background: var(--orange-pale);
   border-radius: var(--radius-xl);
@@ -86,10 +86,47 @@
   background: radial-gradient(circle, rgba(244,98,42,.12), transparent 70%);
   pointer-events: none;
 }
-.banner:hover {
-  border-color: var(--orange-soft);
-  box-shadow: var(--shadow-warm);
-  transform: translateY(-2px);
+
+.trustStrip {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.trustItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 100px;
+}
+
+.trustNum {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  color: var(--orange);
+  line-height: 1;
+}
+
+.trustLabel {
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.trustDivider {
+  width: 1px;
+  height: 44px;
+  background: var(--line-warm);
+  flex-shrink: 0;
 }
 
 .bannerContent {
@@ -103,7 +140,7 @@
 .bannerContent > p {
   font-family: var(--font-display);
   font-size: clamp(15px, 1.8vw, 18px);
-  color: var(--ink);            /* always dark — never white */
+  color: var(--ink);
   font-style: italic;
   flex: 1;
   min-width: 240px;
@@ -111,40 +148,16 @@
   font-weight: 400;
 }
 
-.bannerLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-ui);
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--orange);
-  padding: 11px 24px;
-  border-radius: var(--radius-full);
-  background: var(--white);
-  border: 1.5px solid var(--orange-soft);
-  box-shadow: var(--shadow-warm);
-  transition: all var(--transition);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.bannerLink:hover {
-  background: var(--orange);
-  color: white;
-  border-color: var(--orange);
-  transform: translateY(-2px);
-}
-.bannerLink svg { transition: transform var(--transition); }
-.bannerLink:hover svg { transform: translateX(4px); }
-
 @media (max-width: 960px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 580px) {
   .grid { grid-template-columns: 1fr; }
   .banner { padding: 26px 20px; }
-  .bannerContent { flex-direction: column; gap: 16px; }
-  .bannerLink { width: 100%; justify-content: center; }
+  .trustStrip { gap: 12px; }
+  .trustDivider { display: none; }
+  .trustItem { min-width: 80px; }
 }
 @media (max-width: 400px) {
   .banner { padding: 22px 16px; }
   .grid { gap: 12px; }
+  .trustStrip { gap: 20px 8px; }
 }

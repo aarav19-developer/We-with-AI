@@ -1,14 +1,17 @@
+import { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
-import Hero         from '../components/Hero';
-import Marquee      from '../components/Marquee';
-import VideoSection from '../components/VideoSection';
-import Services     from '../components/Services';
-import Results      from '../components/Results';
-import WhyUs        from '../components/WhyUs';
-import Process      from '../components/Process';
-import StatsBand    from '../components/StatsBand';
-import Partners     from '../components/Partners';
-import Offer        from '../components/Offer';
+import Hero    from '../components/Hero';
+import Marquee from '../components/Marquee';
+
+// Below-the-fold components — lazy loaded
+const VideoSection = lazy(() => import('../components/VideoSection'));
+const Services     = lazy(() => import('../components/Services'));
+const Results      = lazy(() => import('../components/Results'));
+const WhyUs        = lazy(() => import('../components/WhyUs'));
+const Process      = lazy(() => import('../components/Process'));
+const StatsBand    = lazy(() => import('../components/StatsBand'));
+const Partners     = lazy(() => import('../components/Partners'));
+const Offer        = lazy(() => import('../components/Offer'));
 
 export default function HomePage() {
   return (
@@ -31,6 +34,7 @@ export default function HomePage() {
           property="og:description"
           content="50+ brands grown. Social media, Meta & Google ads, branding, content creation, and websites — all under one roof in Meerut, UP."
         />
+        <meta property="og:image"       content="https://zotosmartservices.com/Z.png" />
         {/* Twitter Card */}
         <meta name="twitter:card"        content="summary_large_image" />
         <meta name="twitter:title"       content="Zoto Smart Services — Digital Marketing Agency in Meerut" />
@@ -38,19 +42,22 @@ export default function HomePage() {
           name="twitter:description"
           content="50+ brands grown. Social media, Meta & Google ads, branding, content creation, and websites — all under one roof in Meerut, UP."
         />
+        <meta name="twitter:image"       content="https://zotosmartservices.com/Z.png" />
         <link rel="canonical" href="https://zotosmartservices.com/" />
       </Helmet>
 
       <Hero />
       <Marquee />
-      <VideoSection />
-      <Services preview />
-      <Results />
-      <WhyUs />
-      <Process />
-      <StatsBand />
-      <Partners preview />
-      <Offer />
+      <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
+        <VideoSection />
+        <Services preview />
+        <Results />
+        <WhyUs />
+        <Process />
+        <StatsBand />
+        <Partners preview />
+        <Offer />
+      </Suspense>
     </>
   );
 }

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import SectionHead from '../ui/SectionHead';
 import styles from './WhyUs.module.css';
@@ -66,14 +65,26 @@ export default function WhyUs() {
         </div>
 
         <div className={`${styles.banner} reveal`}>
-          <div className={styles.bannerContent}>
-            <p>We don't just run your social media — we build your brand's entire digital presence.</p>
-            <Link to="/why-us" className={styles.bannerLink}>
-              More Reasons To Choose Us
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </Link>
+          <div className={styles.trustStrip}>
+            <div className={styles.trustItem}>
+              <span className={styles.trustNum}>50+</span>
+              <span className={styles.trustLabel}>Brands Grown</span>
+            </div>
+            <div className={styles.trustDivider} />
+            <div className={styles.trustItem}>
+              <span className={styles.trustNum}>95%</span>
+              <span className={styles.trustLabel}>Client Retention Rate</span>
+            </div>
+            <div className={styles.trustDivider} />
+            <div className={styles.trustItem}>
+              <span className={styles.trustNum}>6+</span>
+              <span className={styles.trustLabel}>Industries Served</span>
+            </div>
+            <div className={styles.trustDivider} />
+            <div className={styles.trustItem}>
+              <span className={styles.trustNum}>3×</span>
+              <span className={styles.trustLabel}>Avg. Engagement Growth</span>
+            </div>
           </div>
         </div>
       </div>
