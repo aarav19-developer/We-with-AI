@@ -1,12 +1,17 @@
 /**
  * prerender.js
  * Runs after `vite build` (client build).
- * Uses the SSR bundle produced by `vite build --ssr` to render `/` to a
- * static HTML string, then injects it into dist/index.html so Google can
- * crawl real content instead of a blank <div id="root">.
+ * Uses the SSR bundle produced by `vite build --ssr` to render all routes
+ * to static HTML so Google crawler gets full content without executing JS.
  *
- * Only "/" is pre-rendered. All other routes are left as normal SPA routes
- * (Vercel handles them via vercel.json rewrites).
+ * Each route gets its own index.html:
+ *   /          → dist/index.html
+ *   /about     → dist/about/index.html
+ *   /services  → dist/services/index.html
+ *   /why-us    → dist/why-us/index.html
+ *   /contact   → dist/contact/index.html
+ *
+ * Vercel serves these automatically via the catch-all rewrite in vercel.json.
  */
 
 import fs   from 'node:fs';
@@ -15,7 +20,13 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const ROUTES_TO_PRERENDER = ['/'];
+const ROUTES_TO_PRERENDER = [
+  '/',
+  '/about',
+  '/services',
+  '/why-us',
+  '/contact',
+];
 
 async function run() {
   // 1. Load the SSR bundle Vite built into dist/server/
@@ -66,8 +77,10 @@ async function run() {
         `  ${helmetHead}\n  </head>`
       );
 
-    // 5. Write output
-    //    "/" → dist/index.html  (Vercel serves this automatically)
+    // 5. Write output — each route gets its own index.html
+    //    "/"        → dist/index.html
+    //    "/about"   → dist/about/index.html
+    //    etc.
     const outDir  = path.resolve(__dirname, 'dist');
     const outFile = url === '/'
       ? path.join(outDir, 'index.html')
@@ -78,7 +91,7 @@ async function run() {
     console.log(`[prerender] Written → ${path.relative(__dirname, outFile)}`);
   }
 
-  console.log('[prerender] Done.');
+  console.log('[prerender] Done — all routes prerendered.');
 }
 
 run();
