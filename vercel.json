@@ -1,12 +1,7 @@
 {
   "cleanUrls": true,
-  "redirects": [
-    {
-      "source": "https://www.zotosmartservices.com/(.*)",
-      "destination": "https://zotosmartservices.com/$1",
-      "permanent": true
-    }
-  ],
+  "trailingSlash": false,
+  "outputDirectory": "dist",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],
