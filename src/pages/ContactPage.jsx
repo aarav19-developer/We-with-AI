@@ -17,16 +17,16 @@ export default function ContactPage() {
         />
         {/* Open Graph */}
         <meta property="og:type"        content="website" />
-        <meta property="og:url"         content="https://zotosmartservices.com/contact" />
+        <meta property="og:url"         content="https://www.zotosmartservices.com/contact" />
         <meta property="og:title"       content="Contact Zoto Smart Services — Book a Free Strategy Call" />
         <meta property="og:description" content="Ready to grow your brand? Book a free strategy call with Zoto Smart Services in Meerut. We'll show you exactly how we'd approach your growth." />
-        <meta property="og:image"       content="https://zotosmartservices.com/Z.png" />
+        <meta property="og:image"       content="https://www.zotosmartservices.com/Z.png" />
         {/* Twitter Card */}
         <meta name="twitter:card"        content="summary_large_image" />
         <meta name="twitter:title"       content="Contact Zoto Smart Services — Free Strategy Call" />
         <meta name="twitter:description" content="Book a free strategy call with Zoto Smart Services in Meerut. Let's build your brand together." />
-        <meta name="twitter:image"       content="https://zotosmartservices.com/Z.png" />
-        <link rel="canonical" href="https://zotosmartservices.com/contact" />
+        <meta name="twitter:image"       content="https://www.zotosmartservices.com/Z.png" />
+        <link rel="canonical" href="https://www.zotosmartservices.com/contact" />
       </Helmet>
 
       <div className="page-hero">

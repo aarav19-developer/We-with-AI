@@ -18,16 +18,16 @@ export default function ServicesPage() {
         />
         {/* Open Graph */}
         <meta property="og:type"        content="website" />
-        <meta property="og:url"         content="https://zotosmartservices.com/services" />
+        <meta property="og:url"         content="https://www.zotosmartservices.com/services" />
         <meta property="og:title"       content="Our Services — Social Media, Ads, Branding & Websites | Zoto Smart Services" />
         <meta property="og:description" content="Social media, Meta & Google ads, SEO, branding, content creation and websites — all under one roof at Zoto Smart Services, Meerut." />
-        <meta property="og:image"       content="https://zotosmartservices.com/Z.png" />
+        <meta property="og:image"       content="https://www.zotosmartservices.com/Z.png" />
         {/* Twitter Card */}
         <meta name="twitter:card"        content="summary_large_image" />
         <meta name="twitter:title"       content="Our Services | Zoto Smart Services — Digital Marketing Meerut" />
         <meta name="twitter:description" content="Social media, ads, branding, content and websites — all under one roof at Zoto Smart Services, Meerut." />
-        <meta name="twitter:image"       content="https://zotosmartservices.com/Z.png" />
-        <link rel="canonical" href="https://zotosmartservices.com/services" />
+        <meta name="twitter:image"       content="https://www.zotosmartservices.com/Z.png" />
+        <link rel="canonical" href="https://www.zotosmartservices.com/services" />
       </Helmet>
 
       <div className="page-hero">

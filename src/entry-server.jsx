@@ -51,15 +51,15 @@ function HomePageSSR() {
           content="digital marketing agency Meerut, social media management Meerut, Meta ads Meerut, Google ads Meerut, branding agency UP, content creation Meerut, website development Meerut, performance marketing India, SEO Meerut, Zoto Smart Services"
         />
         <meta property="og:type"        content="website" />
-        <meta property="og:url"         content="https://zotosmartservices.com/" />
+        <meta property="og:url"         content="https://www.zotosmartservices.com/" />
         <meta property="og:title"       content="Zoto Smart Services — Digital Marketing Agency in Meerut" />
         <meta property="og:description" content="50+ brands grown. Social media, Meta & Google ads, branding, content creation, and websites — all under one roof in Meerut, UP." />
-        <meta property="og:image"       content="https://zotosmartservices.com/Z.png" />
+        <meta property="og:image"       content="https://www.zotosmartservices.com/Z.png" />
         <meta name="twitter:card"        content="summary_large_image" />
         <meta name="twitter:title"       content="Zoto Smart Services — Digital Marketing Agency in Meerut" />
         <meta name="twitter:description" content="50+ brands grown. Social media, Meta & Google ads, branding, content creation, and websites — all under one roof in Meerut, UP." />
-        <meta name="twitter:image"       content="https://zotosmartservices.com/Z.png" />
-        <link rel="canonical" href="https://zotosmartservices.com/" />
+        <meta name="twitter:image"       content="https://www.zotosmartservices.com/Z.png" />
+        <link rel="canonical" href="https://www.zotosmartservices.com/" />
       </Helmet>
 
       <Hero />

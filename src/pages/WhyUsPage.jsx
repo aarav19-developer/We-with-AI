@@ -18,16 +18,16 @@ export default function WhyUsPage() {
         />
         {/* Open Graph */}
         <meta property="og:type"        content="website" />
-        <meta property="og:url"         content="https://zotosmartservices.com/why-us" />
+        <meta property="og:url"         content="https://www.zotosmartservices.com/why-us" />
         <meta property="og:title"       content="Why Choose Zoto Smart Services — Your In-House Growth Team in Meerut" />
         <meta property="og:description" content="50+ brands grown, 95% retention rate. We act as your in-house growth team — not just another vendor. See why businesses in Meerut trust Zoto." />
-        <meta property="og:image"       content="https://zotosmartservices.com/Z.png" />
+        <meta property="og:image"       content="https://www.zotosmartservices.com/Z.png" />
         {/* Twitter Card */}
         <meta name="twitter:card"        content="summary_large_image" />
         <meta name="twitter:title"       content="Why Choose Zoto Smart Services | Digital Marketing Meerut" />
         <meta name="twitter:description" content="50+ brands grown, 95% retention. We act as your in-house growth team — data-driven, results-focused." />
-        <meta name="twitter:image"       content="https://zotosmartservices.com/Z.png" />
-        <link rel="canonical" href="https://zotosmartservices.com/why-us" />
+        <meta name="twitter:image"       content="https://www.zotosmartservices.com/Z.png" />
+        <link rel="canonical" href="https://www.zotosmartservices.com/why-us" />
       </Helmet>
 
       <div className="page-hero">

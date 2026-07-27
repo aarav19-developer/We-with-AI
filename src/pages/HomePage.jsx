@@ -28,13 +28,13 @@ export default function HomePage() {
         />
         {/* Open Graph */}
         <meta property="og:type"        content="website" />
-        <meta property="og:url"         content="https://zotosmartservices.com/" />
+        <meta property="og:url"         content="https://www.zotosmartservices.com/" />
         <meta property="og:title"       content="Zoto Smart Services — Digital Marketing Agency in Meerut" />
         <meta
           property="og:description"
           content="50+ brands grown. Social media, Meta & Google ads, branding, content creation, and websites — all under one roof in Meerut, UP."
         />
-        <meta property="og:image"       content="https://zotosmartservices.com/Z.png" />
+        <meta property="og:image"       content="https://www.zotosmartservices.com/Z.png" />
         {/* Twitter Card */}
         <meta name="twitter:card"        content="summary_large_image" />
         <meta name="twitter:title"       content="Zoto Smart Services — Digital Marketing Agency in Meerut" />
@@ -42,8 +42,8 @@ export default function HomePage() {
           name="twitter:description"
           content="50+ brands grown. Social media, Meta & Google ads, branding, content creation, and websites — all under one roof in Meerut, UP."
         />
-        <meta name="twitter:image"       content="https://zotosmartservices.com/Z.png" />
-        <link rel="canonical" href="https://zotosmartservices.com/" />
+        <meta name="twitter:image"       content="https://www.zotosmartservices.com/Z.png" />
+        <link rel="canonical" href="https://www.zotosmartservices.com/" />
       </Helmet>
 
       <Hero />
