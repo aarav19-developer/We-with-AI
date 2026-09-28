@@ -36,13 +36,28 @@
   background: var(--white);
   border: 1px solid var(--line-warm);
   box-shadow: var(--shadow-xs);
-  transition: all 0.25s ease;
+  transition: all 0.32s cubic-bezier(.34,1.56,.64,1);
+  position: relative;
+  overflow: hidden;
 }
+/* left colour flash */
+.pillar::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--orange), var(--purple-light));
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.32s cubic-bezier(.34,1.56,.64,1);
+  border-radius: 0 2px 2px 0;
+}
+.pillar:hover::before { transform: scaleY(1); }
 .pillar:hover {
   border-color: var(--purple-light);
   background: var(--purple-pale);
-  transform: translateX(6px);
-  box-shadow: var(--shadow-sm);
+  transform: translateX(8px) scale(1.01);
+  box-shadow: var(--shadow-sm), 0 0 0 1px rgba(167,139,250,.12);
 }
 .pillarIcon {
   flex-shrink: 0;
@@ -50,17 +65,22 @@
   display: block;
   border-radius: 9px;
   overflow: hidden;
-  transition: transform 0.25s ease;
+  transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), filter 0.3s ease;
 }
 .pillarIcon svg { width: 36px; height: 36px; }
-.pillar:hover .pillarIcon { transform: scale(1.12) rotate(-6deg); }
+.pillar:hover .pillarIcon {
+  transform: scale(1.18) rotate(-10deg);
+  filter: drop-shadow(0 4px 10px rgba(124,58,237,.3));
+}
 .pillarTitle {
   font-family: var(--font-ui);
   font-size: 14.5px;
   font-weight: 600;
   color: var(--ink);
   margin-bottom: 3px;
+  transition: color 0.25s ease;
 }
+.pillar:hover .pillarTitle { color: var(--purple); }
 .pillarDesc {
   font-family: var(--font-sans);
   font-size: 13px;
@@ -221,15 +241,30 @@
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.28s cubic-bezier(.4,0,.2,1),
-              box-shadow 0.28s cubic-bezier(.4,0,.2,1),
+  transition: transform 0.36s cubic-bezier(.34,1.56,.64,1),
+              box-shadow 0.36s cubic-bezier(.34,1.56,.64,1),
               border-color 0.28s ease;
+  perspective: 800px;
+  transform-style: preserve-3d;
 }
 .teamCard:hover {
-  transform: translateY(-8px);
+  transform: translateY(-10px) rotateX(2deg) rotateY(-1.5deg);
   border-color: var(--mc, var(--purple-light));
-  box-shadow: 0 20px 56px rgba(124,58,237,.14), 0 4px 14px rgba(0,0,0,.06);
+  box-shadow: 0 28px 64px rgba(124,58,237,.16), 0 6px 18px rgba(0,0,0,.07);
 }
+
+/* inner shine */
+.teamCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.1) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.teamCard:hover::after { opacity: 1; }
 
 /* animated colour bar at top — thickens on hover */
 .cardBar {
@@ -537,40 +572,38 @@
   .stat { min-width: 70px; }
 }
 
-/* ── Animated skill bars (replaces highlight chips) ── */
-.skillBars {
+/* ── Member icon tag chips (replaces skill bars) ── */
+.memberTags {
   display: flex;
-  flex-direction: column;
-  gap: 11px;
+  flex-wrap: wrap;
+  gap: 7px;
 }
-.skillMeta {
-  display: flex;
-  justify-content: space-between;
+.memberTagChip {
+  display: inline-flex;
   align-items: center;
-  margin-bottom: 5px;
-}
-.skillLabel {
-  font-family: var(--font-ui);
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--ink-light);
-}
-.skillPct {
+  gap: 5px;
   font-family: var(--font-ui);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--tc, var(--purple-muted));
+  color: var(--tc, var(--purple));
+  letter-spacing: 0.02em;
+  transition: all 0.28s cubic-bezier(.34,1.56,.64,1);
+  cursor: default;
 }
-.skillTrack {
-  height: 6px;
-  background: var(--line-warm);
-  border-radius: 99px;
-  overflow: hidden;
+.memberTagChip:hover {
+  background: var(--tc, var(--purple)) !important;
+  color: #fff !important;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,.15);
+  border-color: transparent !important;
 }
-.skillFill {
-  height: 100%;
-  border-radius: 99px;
-  animation: fillBar 1.2s cubic-bezier(.4,0,.2,1) forwards;
+.memberTagChip:hover .tagChipIcon { color: #fff !important; }
+.tagChipIcon {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), color 0.2s ease;
 }
-@keyframes fillBar {
-  from { width: 0 !important; }
-}
+.memberTagChip:hover .tagChipIcon { transform: rotate(-10deg) scale(1.2); }

@@ -30,16 +30,16 @@
   place-items: center;
   border: 1.5px solid rgba(244,98,42,.2);
   flex-shrink: 0;
-  transition: all var(--transition);
+  transition: all 0.32s cubic-bezier(.34,1.56,.64,1);
   position: relative;
   z-index: 1;
 }
 .step:hover .stepNum {
-  background: var(--orange);
+  background: linear-gradient(135deg, var(--orange), #e8451a);
   color: white;
   border-color: var(--orange);
-  transform: scale(1.06);
-  box-shadow: var(--shadow-warm);
+  transform: scale(1.12) rotate(-5deg);
+  box-shadow: 0 8px 24px rgba(244,98,42,.4);
 }
 
 .connector {
@@ -49,7 +49,20 @@
   background: linear-gradient(to bottom, rgba(244,98,42,.25), rgba(167,139,250,.15));
   margin-block: 4px;
   border-radius: 99px;
+  position: relative;
+  overflow: hidden;
 }
+/* draw animation on step hover */
+.connector::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 0%;
+  background: linear-gradient(to bottom, var(--orange), var(--purple-light));
+  transition: height 0.5s ease;
+  border-radius: 99px;
+}
+.step:hover .connector::after { height: 100%; }
 
 .stepBody {
   display: flex;
@@ -67,13 +80,14 @@
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  transition: all var(--transition);
+  transition: all 0.32s cubic-bezier(.34,1.56,.64,1);
   color: var(--purple);
 }
 .step:hover .stepIconWrap {
   background: var(--purple-pale);
   border-color: var(--purple-light);
-  transform: rotate(5deg);
+  transform: rotate(12deg) scale(1.1);
+  box-shadow: 0 6px 18px rgba(124,58,237,.2);
 }
 .stepIcon { display: flex; align-items: center; }
 .stepIcon svg { width: 22px; height: 22px; }
@@ -84,15 +98,18 @@
   font-weight: 400;
   color: var(--ink);
   margin-bottom: 7px;
+  transition: color 0.25s ease, letter-spacing 0.25s ease;
 }
-.step:hover .stepTitle { color: var(--purple); }
+.step:hover .stepTitle { color: var(--purple); letter-spacing: 0.01em; }
 
 .stepDesc {
   font-family: var(--font-sans);
   font-size: 14px;
   color: var(--ink-muted);
   line-height: 1.78;
+  transition: color 0.25s ease;
 }
+.step:hover .stepDesc { color: var(--ink-light); }
 
 .note {
   text-align: center;
@@ -106,6 +123,12 @@
   max-width: 680px;
   margin-inline: auto;
   line-height: 1.72;
+  transition: all 0.3s ease;
+}
+.note:hover {
+  box-shadow: var(--shadow-warm);
+  border-color: rgba(244,98,42,.3);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 580px) {

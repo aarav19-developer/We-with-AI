@@ -175,25 +175,21 @@ export default function About({ compact = false }) {
                     {/* bio */}
                     <p className={styles.memberBio}>{member.bio}</p>
 
-                    {/* animated skill bars instead of chips */}
-                    <div className={styles.skillBars}>
-                      {member.skills.map((s, si) => (
-                        <div key={s.label} className={styles.skillRow}>
-                          <div className={styles.skillMeta}>
-                            <span className={styles.skillLabel}>{s.label}</span>
-                            <span className={styles.skillPct} style={{ color: member.color }}>{s.pct}%</span>
-                          </div>
-                          <div className={styles.skillTrack}>
-                            <div
-                              className={styles.skillFill}
-                              style={{
-                                width: `${s.pct}%`,
-                                background: `linear-gradient(90deg, ${member.color}, ${member.color}88)`,
-                                animationDelay: `${0.3 + si * 0.15}s`,
-                              }}
-                            />
-                          </div>
-                        </div>
+                    {/* icon tag chips */}
+                    <div className={styles.memberTags}>
+                      {member.tags.map((t) => (
+                        <span
+                          key={t.label}
+                          className={styles.memberTagChip}
+                          style={{ '--tc': member.color, borderColor: `${member.color}30`, background: `${member.color}0d` }}
+                        >
+                          <span
+                            className={styles.tagChipIcon}
+                            style={{ color: member.color }}
+                            dangerouslySetInnerHTML={{ __html: t.svg }}
+                          />
+                          {t.label}
+                        </span>
                       ))}
                     </div>
                   </div>

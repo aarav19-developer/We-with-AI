@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect, lazy, Suspense, useState, useCallback } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import SplashScreen from './components/SplashScreen';
+import CustomCursor from './components/CustomCursor';
 
 // Lazy-loaded pages — each page gets its own JS chunk
 const HomePage     = lazy(() => import('./pages/HomePage'));
@@ -40,9 +42,23 @@ function Layout() {
 }
 
 export default function App() {
+  // Show splash only once per session (not on every route change)
+  const [showSplash, setShowSplash] = useState(
+    () => !sessionStorage.getItem('zoto_splash_done')
+  );
+
+  const handleSplashDone = useCallback(() => {
+    sessionStorage.setItem('zoto_splash_done', '1');
+    setShowSplash(false);
+  }, []);
+
   return (
-    <BrowserRouter>
-      <Layout />
-    </BrowserRouter>
+    <>
+      <CustomCursor />
+      {showSplash && <SplashScreen onDone={handleSplashDone} />}
+      <BrowserRouter>
+        <Layout />
+      </BrowserRouter>
+    </>
   );
 }

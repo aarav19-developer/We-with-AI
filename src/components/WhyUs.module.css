@@ -14,14 +14,15 @@
   background: var(--white);
   border: 1px solid var(--line-warm);
   box-shadow: var(--shadow-xs);
-  transition: all 0.28s cubic-bezier(.4,0,.2,1);
+  transition: all 0.32s cubic-bezier(.34,1.56,.64,1);
   position: relative;
   overflow: hidden;
+  perspective: 600px;
 }
 .card:hover {
   border-color: var(--purple-light);
-  box-shadow: 0 14px 40px rgba(167,139,250,.16), 0 4px 12px rgba(0,0,0,.05);
-  transform: translateY(-6px);
+  box-shadow: 0 18px 48px rgba(167,139,250,.18), 0 4px 12px rgba(0,0,0,.05);
+  transform: translateY(-8px) rotateX(2deg);
   background: var(--warm-white);
 }
 
@@ -33,19 +34,35 @@
   background: linear-gradient(90deg, var(--orange-soft), var(--purple-light));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform var(--transition);
+  transition: transform 0.36s cubic-bezier(.34,1.56,.64,1);
 }
 .card:hover .hoverLine { transform: scaleX(1); }
+
+/* corner glow */
+.card::after {
+  content: '';
+  position: absolute;
+  top: -30px; right: -30px;
+  width: 100px; height: 100px;
+  background: radial-gradient(circle, rgba(167,139,250,.14), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.card:hover::after { opacity: 1; }
 
 .iconWrap {
   width: 40px; height: 40px;
   flex-shrink: 0;
   border-radius: 10px;
   overflow: hidden;
-  transition: transform var(--transition);
+  transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease;
 }
 .iconWrap svg { width: 40px; height: 40px; }
-.card:hover .iconWrap { transform: scale(1.08) rotate(-3deg); }
+.card:hover .iconWrap {
+  transform: scale(1.18) rotate(-10deg);
+  box-shadow: 0 6px 18px rgba(124,58,237,.22);
+}
 
 .body { flex: 1; }
 
@@ -55,18 +72,20 @@
   font-weight: 400;
   color: var(--ink);
   margin-bottom: 6px;
-  transition: color var(--transition);
+  transition: color 0.25s ease, letter-spacing 0.25s ease;
 }
-.card:hover .title { color: var(--purple); }
+.card:hover .title { color: var(--purple); letter-spacing: 0.01em; }
 
 .desc {
   font-family: var(--font-sans);
   font-size: 13px;
   color: var(--ink-muted);
   line-height: 1.72;
+  transition: color 0.25s ease;
 }
+.card:hover .desc { color: var(--ink-light); }
 
-/* Banner / Trust Strip */
+/* Banner */
 .banner {
   background: var(--orange-pale);
   border-radius: var(--radius-xl);
@@ -75,17 +94,22 @@
   box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
-  transition: all var(--transition);
+  transition: all 0.3s ease;
 }
-/* orange glow inside banner */
+.banner:hover {
+  box-shadow: var(--shadow-warm);
+  transform: translateY(-3px);
+}
 .banner::after {
   content: '';
   position: absolute;
   top: 0; right: 0;
   width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(244,98,42,.12), transparent 70%);
+  background: radial-gradient(circle, rgba(244,98,42,.15), transparent 70%);
   pointer-events: none;
+  transition: width 0.4s ease, height 0.4s ease;
 }
+.banner:hover::after { width: 300px; height: 300px; }
 
 .trustStrip {
   display: flex;
@@ -94,7 +118,6 @@
   gap: 16px;
   flex-wrap: wrap;
 }
-
 .trustItem {
   display: flex;
   flex-direction: column;
@@ -102,16 +125,18 @@
   gap: 4px;
   flex: 1;
   min-width: 100px;
+  transition: transform 0.28s cubic-bezier(.34,1.56,.64,1);
 }
-
+.trustItem:hover { transform: translateY(-5px) scale(1.06); }
 .trustNum {
   font-family: var(--font-display);
   font-size: clamp(28px, 4vw, 40px);
   font-weight: 700;
   color: var(--orange);
   line-height: 1;
+  transition: color 0.25s ease;
 }
-
+.trustItem:hover .trustNum { color: var(--purple); }
 .trustLabel {
   font-family: var(--font-ui);
   font-size: 12.5px;
@@ -121,14 +146,12 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
-
 .trustDivider {
   width: 1px;
   height: 44px;
   background: var(--line-warm);
   flex-shrink: 0;
 }
-
 .bannerContent {
   display: flex;
   align-items: center;
@@ -136,7 +159,6 @@
   gap: 24px;
   flex-wrap: wrap;
 }
-
 .bannerContent > p {
   font-family: var(--font-display);
   font-size: clamp(15px, 1.8vw, 18px);

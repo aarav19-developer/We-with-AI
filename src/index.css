@@ -234,14 +234,15 @@ strong { font-weight: 600; color: var(--text-dark); }
 /* ─── Scrollbar ─────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--cream-dark); }
-::-webkit-scrollbar-thumb { background: var(--purple-light); border-radius: 99px; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--orange-soft), var(--purple-light));
+  border-radius: 99px;
+}
 
 /* ─── Selection ─────────────────────────────────────────── */
 ::selection { background: var(--purple-muted); color: var(--purple); }
 
 /* ─── Global orange + purple reflection on all sections ────── */
-/* A subtle orange radial at the bottom-left of every section
-   gives the warm orange glow feel across the whole site */
 .section { position: relative; overflow: hidden; }
 .section::before {
   content: '';
@@ -251,6 +252,26 @@ strong { font-weight: 600; color: var(--text-dark); }
   background: radial-gradient(circle, rgba(244,98,42,.055) 0%, transparent 68%);
   pointer-events: none;
   z-index: 0;
+}
+
+/* ─── Global SVG icon transitions ────────────────────────── */
+a svg, button svg {
+  transition: transform 0.28s cubic-bezier(.34,1.56,.64,1), filter 0.28s ease;
+}
+
+/* ─── Badge hover ─────────────────────────────────────────── */
+.badge {
+  transition: all 0.28s cubic-bezier(.34,1.56,.64,1);
+  cursor: default;
+}
+.badge:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 14px rgba(124,58,237,.15);
+}
+
+/* ─── Page-hero ring decoration ──────────────────────────── */
+.page-hero {
+  overflow: hidden;
 }
 
 /* ─── Responsive ───────────────────────────────────────── */

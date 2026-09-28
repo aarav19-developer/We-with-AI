@@ -197,12 +197,26 @@
   max-width: 410px;
   position: relative;
   box-shadow: var(--shadow-lg);
-  transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+  transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+  perspective: 800px;
 }
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 64px rgba(124,58,237,.16), 0 8px 24px rgba(0,0,0,.07);
+  transform: translateY(-10px) rotateX(2deg) rotateY(-2deg);
+  box-shadow: 0 32px 72px rgba(124,58,237,.2), 0 8px 24px rgba(0,0,0,.08);
 }
+/* inner shine sweep on hover */
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,.18) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.card:hover::after { opacity: 1; }
 
 .cardHeader {
   display: flex;
@@ -238,13 +252,25 @@
   background: var(--cream);
   border: 1px solid var(--line-warm);
   text-align: center;
-  transition: all var(--transition);
+  transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
+  position: relative;
+  overflow: hidden;
+}
+.statItem::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(124,58,237,.06), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 .statItem:hover {
   background: var(--purple-pale);
   border-color: var(--purple-light);
-  transform: scale(1.03);
+  transform: scale(1.07) translateY(-3px);
+  box-shadow: 0 8px 24px rgba(124,58,237,.15);
 }
+.statItem:hover::before { opacity: 1; }
 .statValue {
   display: block;
   font-family: var(--font-display);
@@ -330,13 +356,18 @@
   align-items: center;
   gap: 7px;
   animation: floatPill 4s ease-in-out infinite;
-  transition: all var(--transition);
+  transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
+  cursor: default;
 }
 .pill:hover {
-  border-color: var(--purple-light);
-  color: var(--purple);
-  transform: translateY(-4px) !important;
-  box-shadow: var(--shadow-purple);
+  border-color: var(--pill-color, var(--purple-light));
+  color: var(--pill-color, var(--purple));
+  transform: translateY(-8px) scale(1.08) !important;
+  box-shadow: 0 16px 36px rgba(124,58,237,.22);
+  background: var(--purple-pale);
+}
+.pill:hover .pillIconWrap svg {
+  animation: iconSpin 0.5s ease forwards;
 }
 .pillIconWrap { display: flex; align-items: center; color: var(--pill-color); }
 .pill1 { top: -14px;  left: -20px;  animation-delay: 0s;    z-index: 2; }
@@ -346,6 +377,30 @@
 @keyframes floatPill {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(-10px); }
+}
+
+@keyframes iconSpin {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* blob4 + noise */
+.blob4 {
+  position: absolute;
+  width: 320px; height: 320px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(124,58,237,.05) 0%, transparent 68%);
+  border-radius: 50%;
+  animation: blobFloat 15s ease-in-out infinite 4s;
+}
+.noiseTex {
+  position: absolute;
+  inset: 0;
+  opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
 }
 
 /* ── Bottom fade ── */
